@@ -8,8 +8,11 @@ import {ERC721EnumerableUpgradeable} from "@openzeppelin/contracts-upgradeable/t
 import {ERC721PausableUpgradeable} from "@openzeppelin/contracts-upgradeable/token/ERC721/extensions/ERC721PausableUpgradeable.sol";
 import {Initializable} from "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import {OwnableUpgradeable} from "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import {UUPSUpgradeable} from "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 
-contract BikeVaultBuilder is Initializable, ERC721Upgradeable, ERC721EnumerableUpgradeable, ERC721PausableUpgradeable, OwnableUpgradeable, ERC721BurnableUpgradeable {
+contract BikeVaultBuilder is Initializable, ERC721Upgradeable,ERC721EnumerableUpgradeable,
+ ERC721PausableUpgradeable, OwnableUpgradeable,
+  ERC721BurnableUpgradeable, UUPSUpgradeable {
     uint256 private _nextTokenId;
 bool public publicMintOpen =false;
 bool public allowListMintOpen =false;
@@ -19,7 +22,7 @@ bool public allowListMintOpen =false;
 
     /// @custom:oz-upgrades-unsafe-allow constructor
     constructor() {
-        _disableInitializers();
+         _disableInitializers();
     }
 
     function initialize(address initialOwner) initializer public {
@@ -28,6 +31,7 @@ bool public allowListMintOpen =false;
         __ERC721Pausable_init();
         __Ownable_init(initialOwner);
         __ERC721Burnable_init();
+         __UUPSUpgradeable_init();
     }
 
     function _baseURI() internal pure override returns (string memory) {
@@ -65,8 +69,7 @@ bool public allowListMintOpen =false;
     function publicMint() public payable  {
          require(publicMintOpen,"Public Mint Closed");
         require(msg.value == 0.001 ether, "Not Enough funds");
-        uint256 tokenId = _nextTokenId++;
-        _safeMint(msg.sender, tokenId);
+         internalMint();
     }
 
     // The following functions are overrides required by Solidity.
@@ -102,9 +105,9 @@ bool public allowListMintOpen =false;
 //required people need to be added to a list array as whitelist
     function allowListMint() public payable  {
         require(allowListMintOpen,"Allowlist Mint Closed");
+        require(allowList[msg.sender],"You arenot allowed to mint");
         require(msg.value == 0.0001 ether, "Not Enough Funds");
-        uint256 tokenId = _nextTokenId++;
-        _safeMint(msg.sender, tokenId);
+        internalMint();
     }
 
 
@@ -112,7 +115,26 @@ bool public allowListMintOpen =false;
             allowListMintOpen=_allowListMintOpen;
             publicMintOpen = _publicMintOpen;
     }
-    
 
+    function _authorizeUpgrade(address newImplementation)
+        internal
+        onlyOwner
+        override
+    {}
+    
+    function test() public pure returns(string memory){
+        return "Bike Contract";
+    }
+
+    function internalMint() internal {
+        uint256 tokenId = _nextTokenId++;
+        _safeMint(msg.sender, tokenId);
+    }
+
+
+ function withdraw(address _addr) external onlyOwner{
+    uint256 balance = address(this).balance;
+    payable(_addr).transfer(balance);
+ }
 
 }

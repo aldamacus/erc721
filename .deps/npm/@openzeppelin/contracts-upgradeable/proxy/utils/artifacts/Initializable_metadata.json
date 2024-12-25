@@ -76,11 +76,11 @@
 	},
 	"sources": {
 		".deps/npm/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol": {
-			"keccak256": "0x631188737069917d2f909d29ce62c4d48611d326686ba6683e26b72a23bfac0b",
+			"keccak256": "0xe49a0f9e31e7402b2cf2e08307edaed1e76a9ef2cd092610951313f421b6d615",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://7a61054ae84cd6c4d04c0c4450ba1d6de41e27e0a2c4f1bcdf58f796b401c609",
-				"dweb:/ipfs/QmUvtdp7X1mRVyC3CsHrtPbgoqWaXHp3S1ZR24tpAQYJWM"
+				"bzz-raw://ac738d1a0963675a940660763785d017b3a4eeac6d0093f2b3922533e92c6370",
+				"dweb:/ipfs/QmUaCe7r1dThNoPaUBX8hNnoj87FVxqLKjo5zKoBthjWBE"
 			]
 		}
 	},

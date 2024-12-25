@@ -1,0 +1,64 @@
+{
+	"compiler": {
+		"version": "0.8.28+commit.7893614a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "implementation",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "This is the interface that {BeaconProxy} expects of its beacon.",
+			"kind": "dev",
+			"methods": {
+				"implementation()": {
+					"details": "Must return an address that can be used as a delegate call target. {UpgradeableBeacon} will check that this address is a contract."
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/BikeVaultBuilder_flattened.sol": "IBeacon"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/BikeVaultBuilder_flattened.sol": {
+			"keccak256": "0xfb1cf497ec1764e6799d89ace5dc5d3f4d973b52b2327538304515c52f80ad8d",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://450beee73bd03c75da71790eaccc1d2f55449a95399d2bb70dcf34863391f940",
+				"dweb:/ipfs/QmWTU5vmmQNaL7PLoS3Jh5P5L5FzjaNcJsPBZihWaNoNg3"
+			]
+		}
+	},
+	"version": 1
+}

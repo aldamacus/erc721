@@ -11,6 +11,11 @@ import {OwnableUpgradeable} from "@openzeppelin/contracts-upgradeable/access/Own
 
 contract BikeVaultBuilder is Initializable, ERC721Upgradeable, ERC721EnumerableUpgradeable, ERC721PausableUpgradeable, OwnableUpgradeable, ERC721BurnableUpgradeable {
     uint256 private _nextTokenId;
+bool public publicMintOpen =false;
+bool public allowListMintOpen =false;
+
+
+    mapping(address=>bool) public allowList;
 
     /// @custom:oz-upgrades-unsafe-allow constructor
     constructor() {
@@ -37,9 +42,29 @@ contract BikeVaultBuilder is Initializable, ERC721Upgradeable, ERC721EnumerableU
         _unpause();
     }
 
+
+ function setAllowList(address [] calldata addresses) external onlyOwner{
+    for(uint256 i=0; i<addresses.length; i++){
+            allowList[addresses[i]]=true;
+    }
+ }
+
+
+ function addToAllowList(address _address) external onlyOwner{
+            require(allowList[_address]=false,"Already added to the allowedList");
+            allowList[_address]=true;
+ }
+
+ function removeFromAllowList(address _address) external onlyOwner{
+        require(allowList[_address]=true,"Address is not in the allowedList");
+            allowList[_address]=false;
+ }
+
+
     // add payment. payabla allows us to receive money 
     function publicMint() public payable  {
-        require(msg.value >= 0.00144 ether, "Not Enough funds");
+         require(publicMintOpen,"Public Mint Closed");
+        require(msg.value == 0.001 ether, "Not Enough funds");
         uint256 tokenId = _nextTokenId++;
         _safeMint(msg.sender, tokenId);
     }
@@ -69,4 +94,25 @@ contract BikeVaultBuilder is Initializable, ERC721Upgradeable, ERC721EnumerableU
     {
         return super.supportsInterface(interfaceId);
     }
+
+
+
+
+//add public mint and allowance and allowLitMintOpen variavbels
+//required people need to be added to a list array as whitelist
+    function allowListMint() public payable  {
+        require(allowListMintOpen,"Allowlist Mint Closed");
+        require(msg.value == 0.0001 ether, "Not Enough Funds");
+        uint256 tokenId = _nextTokenId++;
+        _safeMint(msg.sender, tokenId);
+    }
+
+
+    function editMintWindows(bool _publicMintOpen,bool _allowListMintOpen) external onlyOwner{
+            allowListMintOpen=_allowListMintOpen;
+            publicMintOpen = _publicMintOpen;
+    }
+    
+
+
 }

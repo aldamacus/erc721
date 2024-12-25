@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.22+commit.4fc1097e"
+		"version": "0.8.26+commit.8a97fa7a"
 	},
 	"language": "Solidity",
 	"output": {
@@ -313,6 +313,58 @@
 				"inputs": [
 					{
 						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"name": "addToAllowList",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "allowList",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "allowListMint",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "allowListMintOpen",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
 						"name": "to",
 						"type": "address"
 					},
@@ -355,6 +407,24 @@
 					}
 				],
 				"name": "burn",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bool",
+						"name": "_publicMintOpen",
+						"type": "bool"
+					},
+					{
+						"internalType": "bool",
+						"name": "_allowListMintOpen",
+						"type": "bool"
+					}
+				],
+				"name": "editMintWindows",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -489,6 +559,32 @@
 			},
 			{
 				"inputs": [],
+				"name": "publicMintOpen",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"name": "removeFromAllowList",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "renounceOwnership",
 				"outputs": [],
 				"stateMutability": "nonpayable",
@@ -541,6 +637,19 @@
 					}
 				],
 				"name": "safeTransferFrom",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address[]",
+						"name": "addresses",
+						"type": "address[]"
+					}
+				],
+				"name": "setAllowList",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -922,7 +1031,7 @@
 		"compilationTarget": {
 			"contracts/BikeVaultBuilder.sol": "BikeVaultBuilder"
 		},
-		"evmVersion": "shanghai",
+		"evmVersion": "cancun",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -1103,11 +1212,11 @@
 			]
 		},
 		"contracts/BikeVaultBuilder.sol": {
-			"keccak256": "0x3bb8bd56fb52d219a925cf1411c169218b6873d09959f733d51282302d317a41",
+			"keccak256": "0x0e49a12dcfde935712a0e26035d52c6eff4378728f6e9baec824faac3495a66f",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://eef8d35246d09e01521448b5006e6807b711ba0debb102c41dfc2bbb2bdea1ad",
-				"dweb:/ipfs/Qmd2zbXvH7chf8x7oqTtmCWmjcCBDRU6ojLDLh5bPPuphC"
+				"bzz-raw://ae2b722fe64fb5e13bcd4b5a9bb655dbafd7af4193013c30eb7165740bbf4bfe",
+				"dweb:/ipfs/QmectykKYa3GiMQix2dhcfQdAyWSKHo7wwSL9BqKfEHFMg"
 			]
 		}
 	},
